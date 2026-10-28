@@ -1,5 +1,4 @@
 
-<
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +19,55 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff;
-            overflow-x: hidden;
+            background: #ffffff;
+            overflow: hidden;
+            position: relative;
         }
 
+        /* Floating hearts background */
+        .hearts-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            color: #b49acb;
+            opacity: 0;
+            font-size: 20px;
+            animation: floatHeart linear infinite;
+            filter: blur(0.2px);
+            will-change: transform, opacity;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.45;
+            }
+
+            80% {
+                opacity: 0.35;
+            }
+
+            100% {
+                transform: translateY(-115vh) rotate(35deg) scale(1.15);
+                opacity: 0;
+            }
+        }
+
+        /* Main logo */
         .logo-reveal {
+            position: relative;
+            z-index: 1;
             width: 90%;
             max-width: 900px;
             margin: 0 auto;
@@ -51,22 +94,22 @@
             }
         }
 
-        /* Mobile devices */
         @media (max-width: 480px) {
             .logo-reveal {
                 width: 94%;
             }
-        }
 
-        /* Tablets */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .logo-reveal {
-                width: 92%;
+            .heart {
+                font-size: 16px;
             }
         }
 
-        /* Reduced motion accessibility */
         @media (prefers-reduced-motion: reduce) {
+            .heart {
+                animation: none;
+                display: none;
+            }
+
             .logo-reveal img {
                 animation: none;
                 opacity: 1;
@@ -78,12 +121,32 @@
 
 <body>
 
+    <div class="hearts-container" id="hearts"></div>
+
     <div class="logo-reveal">
-        <img src="Nourin Gani Editorial Monogram.png" alt="Logo">
+        <img src="Nourin Gani.png" alt="Nourin Gani Logo">
     </div>
 
-</body>
-</html>
+    <script>
+        const heartsContainer = document.getElementById("hearts");
+
+        const heartSymbols = ["♥", "♡", "❤"];
+
+        for (let i = 0; i < 22; i++) {
+            const heart = document.createElement("span");
+
+            heart.className = "heart";
+            heart.textContent =
+                heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.fontSize = (12 + Math.random() * 18) + "px";
+            heart.style.animationDuration = (8 + Math.random() * 10) + "s";
+            heart.style.animationDelay = (-Math.random() * 18) + "s";
+
+            heartsContainer.appendChild(heart);
+        }
+    </script>
 
 </body>
 </html>
