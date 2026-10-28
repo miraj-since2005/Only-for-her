@@ -1,0 +1,89 @@
+
+<
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nourin Gani</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .logo-reveal {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .logo-reveal img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            animation: logoReveal 1.5s ease-out forwards;
+        }
+
+        @keyframes logoReveal {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Mobile devices */
+        @media (max-width: 480px) {
+            .logo-reveal {
+                width: 94%;
+            }
+        }
+
+        /* Tablets */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .logo-reveal {
+                width: 92%;
+            }
+        }
+
+        /* Reduced motion accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .logo-reveal img {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo-reveal">
+        <img src="Nourin Gani Editorial Monogram.png" alt="Logo">
+    </div>
+
+</body>
+</html>
+
+</body>
+</html>
